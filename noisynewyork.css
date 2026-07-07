@@ -1,0 +1,24 @@
+/* The container establishes the boundary for the images */
+.scrolly-graphic {
+  position: relative; 
+  width: 400px;  /* Match your images' width */
+  height: 400px; /* Match your images' height */
+}
+
+.scrolly-graphic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;}
+
+  /* control the stacking order of the images */
+.layer-basemap {
+  z-index: 1;
+}
+.layer-heatmap {
+  z-index: 2;
+}
+.layer-labels {
+  z-index: 3;
+}

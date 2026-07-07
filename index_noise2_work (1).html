@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Story template</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="noisynewyork.css">
+    <style>
+        body {
+            margin: 0;
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-rendering: optimizeLegibility;
+            background: #ffffff; /* Template bleibt strikt weiss */
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+            background: #ffffff; /* Inhalt bleibt strikt weiss */
+        }
+
+        .header {
+            padding: 3em 0;
+        }
+
+        a {
+            color: #f05349;
+        }
+
+        .footer {
+            background: #f4f4f4;
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: 4em;
+            padding: 4em 0;
+        }
+
+        figure {
+            margin: 0;
+            padding-bottom: 1.2em;
+            position: relative;
+        }
+
+        figcaption {
+            font-size: 0.8em;
+            text-align: center;
+            margin-top: 0.5em;
+            color: #666;
+        }
+
+        h1 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: bold;
+            font-size: 3em;
+            line-height: 1.1;
+        }
+
+        .subhead {
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        iframe,
+        img,
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 1.2em;
+        }
+
+        ul {
+            margin: 0;
+            padding-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        iframe {
+            padding-bottom: 1.2em;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: #fffbaf;
+            font-size: 0.85em;
+        }
+
+        .full-width figure {
+            text-align: center;
+        }
+
+        /* Styling für die einheitlichen Ton-Buttons */
+        .audio-control-btn {
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-family: sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+            display: inline-block;
+            position: relative;
+            z-index: 10;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .audio-control-btn:hover {
+            background: #f05349;
+            border-color: #f05349;
+        }
+
+        .audio-control-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Spezialanpassung für das Hochformat-Video auf Textbreite */
+        .portrait-video-wrapper {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .portrait-video-wrapper video {
+            max-height: 70vh;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* ========================================== */
+        /* STYLING FÜR DAS INTERAKTIVE DIAGRAMM       */
+        /* ========================================== */
+        .chart-container {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 2em 0 0 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .chart-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-label {
+            width: 100px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .bar-wrapper {
+            flex-grow: 1;
+            background: #eee;
+            border-radius: 4px;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        #bar-zurich {
+            background: #3498db;
+        }
+
+        #bar-ny {
+            background: #e74c3c;
+        }
+
+        .x-axis {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 100px;
+            border-top: 2px solid #ccc;
+            padding-top: 5px;
+            font-size: 0.75em;
+            color: #666;
+        }
+
+        .chart-source-outside {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            color: #c0c0c0;
+            text-align: left;
+            margin-top: 3px;
+            margin-bottom: 25px;
+            padding-left: 20px;
+            line-height: 1;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                font-size: 18px;
+            }
+
+            .content {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+            .chart-label {
+                width: 80px;
+            }
+            .x-axis {
+                margin-left: 80px;
+            }
+            .chart-source-outside {
+                padding-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="full-width">
+        <figure>
+            <video id="noiseVideo3" src="noise_vid55.mp4" preload="auto" playsinline autoplay loop muted style="width: 100%; display: block;"></video>
+            <button id="muteBtnNoise3" class="audio-control-btn">🔇 Ton: AUS</button>
+        </figure>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1>Noisy New York - On the search for the loudest Place</h1>
+            <p class="subhead">Shouting people, Boomboxes and Police Cars. It's all on the maximum Level. Why the hell? In one Disctrict they began to fight again. </p>
+        </div>
+        <div class="byline">
+            <p>By <a href="https://jonathansoma.com">Yann Cherix</a></p>
+        </div>
+        
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. lsnflsd s dcsldkfnsldkf lsd sld sdlf sldkf sldk dsl sdl  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo xxx Nachher kommt die noise map.</p>
+
+        <div class="chart-container" id="scrolly-chart">
+            <div class="chart-title">Lautstärke der Feuerwehrsirenen im Vergleich</div>
+            <div class="chart-row">
+                <div class="chart-label">Zürich</div>
+                <div class="bar-wrapper">
+                    <div id="bar-zurich" class="bar"></div>
+                </div>
+            </div>
+
+
+            <div class="chart-row">
+                <div class="chart-label">New York</div>
+                <div class="bar-wrapper">
+                    <div id="bar-ny" class="bar"></div>
+                </div>
+            </div>
+
+            <div class="x-axis">
+                <span>0 dB</span>
+                <span>30 dB</span>
+                <span>60 dB</span>
+                <span>90 dB</span>
+                <span>120 dB</span>
+                <span>150 dB</span>
+            </div>
+        </div> 
+        <div class="chart-source-outside">
+            Source (NYC NOISE CODE / STADT ZUERICH)
+        </div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo xxx Nachher kommt die Grafik.</p>
+
+
+        <figure>
+            <img src="noisemap.svg" alt="New York Lärmkarte mit Lärmklagen">
+            <figcaption>New York Lärmkarte (noisemap.svg) mit den markierten Lärmklagen</figcaption>
+        </figure>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo xxx Nachher kommt die Grafik.</p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo xxx Nachher kommt die Grafik.</p>
+
+        <figure>
+            <img src="heatmap33.png" alt="New York Lärmkarte mit Lärmklagen">
+            <figcaption>New York Lärmkarte (heatmap33.png) mit den markierten Lärmklagen</figcaption>
+        </figure>
+
+        <p>You can change the fonts by using <a href="https://fonts.google.com/">Google Fonts</a> and some CSS. Right
+            now we're using Lora for headlines and Georgia for body copy.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
+
+        <p>Die Messungen der städtischen Behörden zeigen ein klares Bild. Während in europäischen Metropolen wie Zürich strenge Grenzwerte für den nächtlichen Lärm von Einsatzfahrzeugen gelten, setzt New York City auf maximale Signalwirkung. 
+            Diese Diskrepanz führt im Alltag zu massiven Unterschieden im Stresspegel der Anwohner. Ein genauerer Blick auf die nackten Zahlen verdeutlicht, warum die Klagen in Manhattan so rasant ansteigen und das Problem zunehmend gesundheitsrelevante Ausmaße annimmt.</p>
+
+<figure>
+            <div style="width: 100%; height: 420px; overflow: hidden; position: relative;">
+                <img src="heatmap33.png" alt="New York Lärmkarte Fokus Washington Heights & Inwood" 
+                     style="width: 100%; 
+                            height: auto; 
+                            position: absolute; 
+                            transform: scale(1.8); 
+                            transform-origin: top left; 
+                            top: -10px; 
+                            left: -490px;  /* Noch ein Stück weiter nach links geschoben */">
+            </div>
+            <figcaption>Fokus auf das tiefrote Gebiet von Washington Heights & Inwood (Ausschnitt ab Central Park)</figcaption>
+        </figure>
+
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conformed magni
+            dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+        <figure class="full-article-width-figure">
+  <img src="wash.webp" alt="Washroom Scene" class="full-article-width-image" loading="lazy">
+  <figcaption class="article-figure-caption">Generously spaced image extending to full article width.</figcaption>
+</figure>
+
+<style>
+  /* Base styles for figures - adjust padding/margin as needed for overall site context */
+  figure {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2em; /* Ensure some spacing below the figure */
+  }
+
+  /* Define the class for full article width figures */
+  .full-article-width-figure {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%; /* Ensures the figure container fills the available width */
+  }
+
+  /* Define the class for full article width images within the figure */
+  .full-article-width-image {
+    display: block; /* Removes any default inline-block behavior */
+    width: 100%; /* Image itself fills the container */
+    max-width: 100%; /* Additional safety, image never exceeds container width */
+    height: auto; /* Maintains aspect ratio */
+  }
+
+  /* Basic caption styles - adjust typography to match your article styling */
+  .article-figure-caption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 0.5em; /* Spacing between image and caption */
+    padding: 0 1em; /* Add small horizontal padding to caption text */
+  }
+</style>
+
+
+<p>Die Messungen der städtischen Behörden zeigen ein klares Bild. Während in europäischen Metropolen wie Zürich strenge Grenzwerte für den nächtlichen Lärm von Einsatzfahrzeugen gelten, setzt New York City auf maximale Signalwirkung. 
+            Diese Diskrepanz führt im Alltag zu massiven Unterschieden im Stresspegel der Anwohner. Ein genauerer Blick auf die nackten Zahlen verdeutlicht, warum die Klagen in Manhattan so rasant ansteigen und das Problem zunehmend gesundheitsrelevante Ausmaße annimmt.</p>
+
+        <figure>
+            <video id="noiseLatino1" src="noise_latino1.mp4" preload="auto" playsinline autoplay loop muted></video>
+            <button id="muteBtnLatino1" class="audio-control-btn">🔇 Ton: AUS</button>
+            <figcaption>Lebendige Rhythmen und urbane Klänge</figcaption>
+        </figure>
+
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+            dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+            numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+            veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+            consequatur?</p>
+
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
+            optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est,
+            omnis dolor repellendus.</p>
+    </div>
+
+        <p>At vero eos et accusamus iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
+            optio cumque nihil impedit quo minus id quod maxime placeat facere </p>
+    </div>
+    <div class="footer">
+        <div class="content">
+            <p>You can find the code for this template <a href="https://github.com/jsoma/page-templates/">here</a>.
+                Delete these lines
+                when you use it, and don't forget to change the <code>title</code> tag!!!</p>
+        </div>
+    </div>
+
+    <script>
+        function setupVideoControls(videoId, buttonId) {
+            const vid = document.getElementById(videoId);
+            const btn = document.getElementById(buttonId);
+            if (vid && btn) {
+                vid.muted = true;
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (vid.muted) {
+                        vid.muted = false;
+                        btn.textContent = '🔊 Ton: AN';
+                    } else {
+                        vid.muted = true;
+                        btn.textContent = '🔇 Ton: AUS';
+                    }
+                });
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            setupVideoControls('noiseVideo3', 'muteBtnNoise3'); 
+            setupVideoControls('noiseLatino1', 'muteBtnLatino1');
+        });
+
+        // Scrollytelling Balkendiagramm-Animation
+        const chartContainer = document.getElementById('scrolly-chart');
+        const barZurich = document.getElementById('bar-zurich');
+        const barNY = document.getElementById('bar-ny');
+        let animated = false;
+
+        window.addEventListener('scroll', function() {
+            if (animated) return;
+
+            const rect = chartContainer.getBoundingClientRect();
+            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+            if (!(rect.bottom < 0 || rect.top - viewHeight >= 0)) {
+                animated = true;
+                setTimeout(() => {
+                    barZurich.style.transition = "width 1.5s ease-out";
+                    barZurich.style.width = "60%";
+                    barZurich.textContent = "90 dB";
+                }, 200);
+
+                setTimeout(() => {
+                    barNY.style.transition = "width 2s ease-out";
+                    barNY.style.width = "80%";
+                    barNY.textContent = "120 dB";
+                }, 1700);
+            }
+        });
+    </script>
+</body>
+
+</html>
