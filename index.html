@@ -1,35 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Story template</title>
+    <title>Noisy New York</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght=0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             margin: 0;
             font-size: 20px;
             font-family: Georgia, 'Times New Roman', Times, serif;
             text-rendering: optimizeLegibility;
-            background: #ffffff; /* Template bleibt strikt weiss */
+            background: #ffffff;
         }
 
         .content {
             max-width: 640px;
             margin: auto;
-            background: #ffffff; /* Inhalt bleibt strikt weiss */
+            background: #ffffff;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .header {
-            padding: 3em 0;
+            padding: 3em 0 1em 0;
         }
 
         a {
             color: #f05349;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .footer {
@@ -41,15 +49,14 @@
         }
 
         figure {
-            margin: 0;
+            margin: 0 0 2em 0;
             padding: 0;
-            margin-bottom: 2em;
             position: relative;
         }
 
         figcaption {
             font-size: 0.8em;
-            text-align: center;
+            text-align: left;
             margin-top: 0.5em;
             color: #666;
         }
@@ -59,15 +66,19 @@
             font-weight: bold;
             font-size: 3em;
             line-height: 1.1;
+            margin-bottom: 0.5em;
         }
 
         .subhead {
             font-family: 'Lora', Georgia, serif;
+            font-size: 1.1em;
+            color: #444;
+            line-height: 1.4;
+            padding-bottom: 1em;
+            font-weight: 500;
         }
 
-        iframe,
-        img,
-        video {
+        iframe, img, video {
             max-width: 100%;
             height: auto;
         }
@@ -78,86 +89,64 @@
             padding-bottom: 1.2em;
         }
 
-        ul {
-            margin: 0;
-            padding-bottom: 1em;
-            line-height: 1.6;
-        }
-
-        iframe {
-            padding-bottom: 1.2em;
-        }
-
         code {
             font-family: 'Courier New', monospace;
             background: #fffbaf;
             font-size: 0.85em;
         }
 
-        .full-width figure {
-            text-align: center;
+        .full-width {
+            width: 100%;
+            overflow: hidden;
         }
 
-        /* ========================================== */
-        /* UPDATE FÜR DISKRETERE AUDIO-CONTROL-BUTTONS */
-        /* ========================================== */
+        .full-width figure {
+            margin: 0;
+            text-align: center;
+            position: relative;
+        }
+
         .audio-control-btn {
-            /* Visuelles Design: Durchschimmerndes Grau mit Glassmorphismus-Effekt */
-            background: rgba(150, 150, 150, 0.4); /* Semitransparentes Grau */
+            background: rgba(150, 150, 150, 0.4);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtilerer Rand */
-            
-            /* Glassmorphismus: Verschwommenes Hintergrund-Video */
+            border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-
-            /* Größe: 20% kleiner (Padding & Font angepasst) */
             padding: 6px 12px;
-            font-size: 11px; /* Ca. 20% kleiner als 14px */
-            
+            font-size: 11px;
             font-family: sans-serif;
             font-weight: bold;
             letter-spacing: 0.5px;
-            text-transform: uppercase; /* Verstärkt den diskreten Look */
-            
+            text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px; /* Etwas kleinerer Radius für kleineren Button */
-            
-            /* Positionierung & Animation */
-            margin-top: 8px;
+            border-radius: 0;
             transition: all 0.2s ease-in-out;
-            display: inline-block;
-            position: relative;
-            z-index: 10;
             outline: none;
             -webkit-tap-highlight-color: transparent;
+            
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
         }
 
-        /* Hover-Effekt: Etwas dunkleres Grau */
+        #muteBtnLatino1 {
+            bottom: 40px;
+        }
+
         .audio-control-btn:hover {
             background: rgba(100, 100, 100, 0.6);
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .audio-control-btn:focus {
-            outline: none;
-            box-shadow: none;
-        }
-
-        /* Positionierung innerhalb von 'full-width figure' */
-        .full-width .audio-control-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            margin-top: 0;
-        }
-
-        /* Spezialanpassung für das Hochformat-Video auf Textbreite */
         .portrait-video-wrapper {
             max-width: 100%;
             width: 100%;
-            margin: 0 auto;
+            margin: 0 auto 2em auto;
             text-align: center;
+            position: relative; 
+            display: inline-block;
         }
 
         .portrait-video-wrapper video {
@@ -167,90 +156,82 @@
             display: block;
         }
 
-        /* ========================================== */
-        /* STYLING FÜR DAS INTERAKTIVE DIAGRAMM       */
-        /* ========================================== */
-        .chart-container {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 2em 0 0 0;
-            font-family: Arial, sans-serif;
+        .sz-container, .sz-animated-container {
+            background: #ffffff;
+            border: none;
+            padding: 20px 0;
+            margin: 2.5em 0 0 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        .chart-title {
-            font-size: 1.1em;
+        .sz-title {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.2em;
             font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
+            color: #111;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-        .chart-row {
+        .sz-row {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
-        .chart-label {
-            width: 100px;
+        .sz-label {
             font-size: 0.85em;
-            font-weight: bold;
+            font-weight: normal;
+            color: #333;
         }
 
-        .bar-wrapper {
+        .sz-bar-wrapper {
             flex-grow: 1;
-            background: #eee;
-            border-radius: 4px;
-            height: 30px;
+            background: #f0f0f0;
+            border-radius: 0;
+            height: 24px;
             position: relative;
             overflow: hidden;
         }
 
-        .bar {
+        .sz-bar {
             height: 100%;
-            width: 0%;
-            border-radius: 4px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 10px;
+            padding-right: 8px;
             color: white;
             font-size: 0.8em;
-            font-weight: bold;
+            font-weight: normal;
             box-sizing: border-box;
+            width: 0%;
         }
 
-        #bar-zurich {
-            background: #3498db;
-        }
+        #bar-zurich, .sz-blue { background: #2c3e6b; }
+        #bar-ny, .sz-red { background: #cf6a65; }
+        .sz-dark-grey { background: #4a5f70; }
+        .sz-light-grey { background: #a0aab5; }
 
-        #bar-ny {
-            background: #e74c3c;
-        }
-
-        .x-axis {
+        .sz-axis {
             display: flex;
             justify-content: space-between;
-            margin-left: 100px;
-            border-top: 2px solid #ccc;
-            padding-top: 5px;
+            border-top: 1px solid #bcbcbc;
+            padding-top: 6px;
             font-size: 0.75em;
             color: #666;
         }
 
-        .chart-source-outside {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            color: #c0c0c0;
+        .sz-source {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            color: #555;
             text-align: left;
-            margin-top: 3px;
-            margin-bottom: 25px;
-            padding-left: 20px;
+            margin-top: 6px;
+            margin-bottom: 30px;
             line-height: 1;
         }
 
-        /* Anpassungen für Bilder mit voller Artikelbreite */
         .full-article-width-figure {
             margin-left: 0;
             margin-right: 0;
@@ -268,38 +249,17 @@
             font-size: 0.9em;
             color: #666;
             margin-top: 0.5em;
-            padding: 0 1em;
+            padding: 0;
+            text-align: left;
         }
 
         @media (max-width: 640px) {
-            body {
-                font-size: 18px;
-            }
-
-            .content {
-                padding-left: 0.5em;
-                padding-right: 0.5em;
-            }
-            
-            .chart-label {
-                width: 80px;
-            }
-            
-            .x-axis {
-                margin-left: 80px;
-            }
-            
-            .chart-source-outside {
-                padding-left: 10px;
-            }
-
-            /* Anpassung der Position für das Full-Width Video auf Mobile */
-            .full-width .audio-control-btn {
-                bottom: 10px;
-                right: 10px;
-                padding: 4px 8px;
-                font-size: 10px;
-            }
+            body { font-size: 18px; }
+            .content { padding-left: 15px; padding-right: 15px; }
+            .sz-label { width: 80px !important; }
+            .sz-axis { margin-left: 80px !important; }
+            .audio-control-btn { bottom: 10px; padding: 4px 8px; font-size: 10px; }
+            #muteBtnLatino1 { bottom: 20px; }
         }
     </style>
 </head>
@@ -309,39 +269,41 @@
     <div class="full-width">
         <figure>
             <video id="noiseVideo3" src="noise_vid55.mp4" preload="auto" playsinline autoplay loop muted style="width: 100%; display: block;"></video>
-            <button id="muteBtnNoise3" class="audio-control-btn">Noise Off</button>
+            <button id="muteBtnNoise3" class="audio-control-btn">Play Noise</button>
         </figure>
     </div>
 
     <div class="content">
         <div class="header">
             <h1>Noisy New York - On the search for the loudest Place</h1>
-            <p class="subhead">Shouting people, Boomboxes and Police Cars. It's all on the maximum Level. In one District they standardly hit the Big Noise.</p>
+            <p class="subhead">Screaming people, thumping boomboxes, and sirens. New York City is constantly playing at maximum volume. One neighborhood has a particularly high number of noise complaints. Why is that?</p>
+            <div class="byline">
+                <p>By <a href="https://jonathansoma.com">Yann Cherix</a></p>
+            </div>
         </div>
+
+        <p>The city hits you hard acoustically. New York obeys its own laws of physics. There are many people between the canyon-like streets, many cars. A lot of everything? But is it really that loud? Is the level in this city that never sleeps even higher?</p>
         
-        <div class="byline">
-            <p>By <a href="https://jonathansoma.com">Yann Cherix</a></p>
-        </div>
+        <p>Answer: Yes! The proof is measured in a single number. 120. That is how loud fire truck sirens are in New York. For comparison: in Zurich, the value is around 90 decibels.</p>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. lsnflsd s dcsldkfnsldkf lsd sld sdlf sldkf sldk dsl sdl Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo xxx Nachher kommt die noise map.</p>
-
-        <div class="chart-container" id="scrolly-chart">
-            <div class="chart-title">Lautstärke der Feuerwehrsirenen im Vergleich</div>
-            <div class="chart-row">
-                <div class="chart-label">Zürich</div>
-                <div class="bar-wrapper">
-                    <div id="bar-zurich" class="bar"></div>
+        <div class="sz-animated-container" id="scrolly-chart">
+            <div class="sz-title">Volume of fire truck sirens in comparison</div>
+            
+            <div class="sz-row">
+                <div class="sz-label" style="width: 100px;">Zurich</div>
+                <div class="sz-bar-wrapper">
+                    <div id="bar-zurich" class="sz-bar"></div>
                 </div>
             </div>
 
-            <div class="chart-row">
-                <div class="chart-label">New York</div>
-                <div class="bar-wrapper">
-                    <div id="bar-ny" class="bar"></div>
+            <div class="sz-row">
+                <div class="sz-label" style="width: 100px;">New York</div>
+                <div class="sz-bar-wrapper">
+                    <div id="bar-ny" class="sz-bar"></div>
                 </div>
             </div>
 
-            <div class="x-axis">
+            <div class="sz-axis" style="margin-left: 100px;">
                 <span>0 dB</span>
                 <span>30 dB</span>
                 <span>60 dB</span>
@@ -350,59 +312,94 @@
                 <span>150 dB</span>
             </div>
         </div>
-        
-        <div class="chart-source-outside">
-            Source (NYC NOISE CODE / STADT ZUERICH)
+        <div class="sz-source">
+            Source: NYC Noise Code, City of Zurich
         </div>
         
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo xxx Nachher kommt die Grafik.</p>
+        <p>Measurements by municipal authorities show a clear picture. While strict limits apply to nighttime noise from emergency vehicles in European metropolises like Zurich, New York City relies on maximum signal impact. This discrepancy leads to massive differences in the stress levels of residents in everyday life.</p>
+        
+        <p>A closer look at the bare numbers illustrates why complaints in Manhattan are rising so rapidly and why the problem is increasingly reaching health-relevant proportions. It is not that the residents of this city are not sensitive. They complain; they call 311. That is the number to lodge noise complaints with the city. And they do so actively, as a look at the map reveals.</p>
 
         <figure>
-            <img src="noisemap.svg" alt="New York Lärmkarte mit Lärmklagen">
-            <figcaption> Call 311 - Stadtweit wird jeden Tag hunderte Male angerufen.</figcaption>
+            <img src="noisemap.svg" alt="New York noise map with noise complaints">
+            <figcaption>Call 311 - Citywide, hundreds of calls are made every day.</figcaption>
         </figure>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo xxx Nachher kommt die Grafik.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo xxx Nachher kommt die Grafik.</p>
-
-        <figure>
-            <img src="heatmap33.png" alt="New York Lärmkarte mit Lärmklagen">
-            <figcaption>Drei Hotspots für Lärmklagen New York</figcaption>
-        </figure>
-
-        <p>You can change the fonts by using <a href="https://fonts.google.com/">Google Fonts</a> and some CSS. Right now we're using Lora for headlines and Georgia for body copy.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        <p>Die Messungen der städtischen Behörden zeigen ein klares Bild. Während in europäischen Metropolen wie Zürich strenge Grenzwerte für den nächtlichen Lärm von Einsatzfahrzeugen gelten, setzt New York City auf maximale Signalwirkung. Diese Diskrepanz führt im Alltag zu massiven Unterschieden im Stresspegel der Anwohner. Ein genauerer Blick auf nackten Zahlen verdeutlicht, warum die Klagen in Manhattan so rasant ansteigen und das Problem zunehmend gesundheitsrelevante Ausmaße annimmt.</p>
-
-        <figure>
-            <div style="width: 100%; height: 420px; overflow: hidden; position: relative;">
-                <img src="heatmap33.png" alt="New York Lärmkarte Fokus Washington Heights & Inwood" style="width: 100%; height: auto; position: absolute; transform: scale(1.8); transform-origin: top left; top: -10px; left: -490px;">
+        <p>So, in a single day, hundreds of people reach out. Very few complaints are likely to be seriously processed. Because a closer look at the data shows: the most common reason for complaints is music noise. By far.</p>
+        
+        <div class="sz-container">
+            <div class="sz-title">The most common noise complaints in NYC (311 Data)</div>
+            
+            <div class="sz-row">
+                <div class="sz-label" style="width: 140px;">Loud Music</div>
+                <div class="sz-bar-wrapper">
+                    <div class="sz-bar sz-blue" style="width: 45%;">45%</div>
+                </div>
             </div>
-            <figcaption>Rekord Lärmklagen - Tiefrote Zone in Washington Heights & Inwood.</figcaption>
+
+            <div class="sz-row">
+                <div class="sz-label" style="width: 140px;">Banging/Pounding</div>
+                <div class="sz-bar-wrapper">
+                    <div class="sz-bar sz-red" style="width: 25%;">25%</div>
+                </div>
+            </div>
+
+            <div class="sz-row">
+                <div class="sz-label" style="width: 140px;">Loud Talk</div>
+                <div class="sz-bar-wrapper">
+                    <div class="sz-bar sz-dark-grey" style="width: 18%;">18%</div>
+                </div>
+            </div>
+
+            <div class="sz-row">
+                <div class="sz-label" style="width: 140px;">Car/Truck Noise</div>
+                <div class="sz-bar-wrapper">
+                    <div class="sz-bar sz-light-grey" style="width: 12%;">12%</div>
+                </div>
+            </div>
+
+            <div class="sz-axis" style="margin-left: 140px;">
+                <span>0%</span>
+                <span>25%</span>
+                <span>50%</span>
+            </div>
+        </div>
+        <div class="sz-source">
+            Source: NYC Open Data / 311 Complaint Database
+        </div>
+
+        <p>It is noisy at the city's traffic hubs. But surprisingly, the highest number of noise complaints comes from the very top of Manhattan. In Washington Heights &amp; Inwood.</p>
+
+        <figure>
+            <img src="heatmap33.png" alt="New York noise map with noise complaints">
+            <figcaption>Three hotspots for New York noise complaints</figcaption>
         </figure>
 
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conformed magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        <p>What municipal noise statistics list as a disturbance is a lived community culture on the ground. Why is there so much dispute over sounds in this neighborhood, away from major traffic and human flows? And what kind of neighborhood is it anyway, up there at the tip between the Hudson River and the Harlem River?</p>
+        
 
         <figure class="full-article-width-figure">
             <img src="wash.webp" alt="Washroom Scene" class="full-article-width-image" loading="lazy">
-            <figcaption class="article-figure-caption">Wasserspiele in Washington Heights.</figcaption>
+            <figcaption class="article-figure-caption">Water games in Washington Heights.</figcaption>
         </figure>
+
+        <p>Washington Heights and Inwood in northern Manhattan are deeply shaped by Caribbean influences. As the heart of the Dominican diaspora (DomRep), the neighborhoods merge into a vibrant Latino center.</p>
+        
+        <p>Public space here pulsates with the rhythm of street food, loud music, and family density. A walk through the neighborhood confirms this.</p>
 
         <figure class="portrait-video-wrapper">
             <video id="noiseLatino1" src="noise_latino1.mp4" preload="auto" playsinline autoplay loop muted></video>
-            <button id="muteBtnLatino1" class="audio-control-btn">Noise Off</button>
+            <button id="muteBtnLatino1" class="audio-control-btn">Play Noise</button>
             <figcaption class="article-figure-caption">Little Domingo in Washington Heights</figcaption>
         </figure>
 
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-
-        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
-
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+        <p>New York's soundscape easily breaks European noise standards. The 311 data exposes Washington Heights as a noise complaint hotspot. Yet, on-site research shows: where authorities only count decibel violations, Dominican street culture pulsates.</p>
         
-        <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+        <p>The problem is not the noise, but the habit. Anyone who wants to sleep here is better off moving away – or dancing along.</p>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Noisy New York Project. Built with care.
     </div>
 
     <script>
@@ -411,17 +408,14 @@
             const btn = document.getElementById(buttonId);
             if (vid && btn) {
                 vid.muted = true;
-
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (vid.muted) {
                         vid.muted = false;
-                        // Beschriftung geändert: Noise ON
-                        btn.textContent = 'Noise On';
+                        btn.textContent = 'Mute Noise';
                     } else {
                         vid.muted = true;
-                        // Beschriftung geändert: Noise OFF
-                        btn.textContent = 'Noise Off';
+                        btn.textContent = 'Play Noise';
                     }
                 });
             }
@@ -432,32 +426,41 @@
             setupVideoControls('noiseLatino1', 'muteBtnLatino1');
         });
 
-        // Scrollytelling Balkendiagramm-Animation
-        const chartContainer = document.getElementById('scrolly-chart');
-        const barZurich = document.getElementById('bar-zurich');
-        const barNY = document.getElementById('bar-ny');
-        let animated = false;
+        (function() {
+            var chart = document.getElementById('scrolly-chart');
+            var zh = document.getElementById('bar-zurich');
+            var ny = document.getElementById('bar-ny');
+            var active = false;
 
-        window.addEventListener('scroll', function() {
-            if (animated) return;
+            window.addEventListener('scroll', function() {
+                var box = chart.getBoundingClientRect();
+                var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+                var isVisible = !(box.bottom < 0 || box.top - viewHeight >= 0);
 
-            const rect = chartContainer.getBoundingClientRect();
-            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-            if (!(rect.bottom < 0 || rect.top - viewHeight >= 0)) {
-                animated = true;
-                setTimeout(() => {
-                    barZurich.style.transition = "width 1.5s ease-out";
-                    barZurich.style.width = "60%";
-                    barZurich.textContent = "90 dB";
-                }, 200);
+                if (isVisible && !active) {
+                    active = true;
+                    zh.style.transition = "width 1.2s ease-out";
+                    zh.style.width = "61%";
+                    zh.textContent = "92 dB";
 
-                setTimeout(() => {
-                    barNY.style.transition = "width 2s ease-out";
-                    barNY.style.width = "80%";
-                    barNY.textContent = "120 dB";
-                }, 1700);
-            }
-        });
+                    setTimeout(function() {
+                        ny.style.transition = "width 1.5s ease-out";
+                        ny.style.width = "81%";
+                        ny.textContent = "120 dB";
+                    }, 300);
+                } else if (!isVisible && active) {
+                    active = false;
+                    zh.style.transition = "none";
+                    zh.style.width = "0%";
+                    zh.textContent = "";
+                    
+                    ny.style.transition = "none";
+                    ny.style.width = "0%";
+                    ny.textContent = "";
+                }
+            });
+        })();
     </script>
 </body>
+
 </html>
