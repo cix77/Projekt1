@@ -1,39 +1,59 @@
-# Noisy New York – On the search for the loudest place
+# Noisy New York — On the Search for the Loudest Place
 
-Eine interaktive Multimedia-Story (Scrollytelling) über die Lärmbelastung in New York City im Vergleich zu europäischen Metropolen wie Zürich. Die Seite visualisiert Daten zu Lärmklagen (311-Calls) und kombiniert diese mit Audio-Elementen und Karten-Hotspots.
+An investigative data analysis exploring New York City's 311 noise complaint patterns, focusing on vehicle noise and the distinct cultural soundscapes of Upper Manhattan.
 
-## 🚀 Live-Demo
-Schau dir das fertige Projekt live an:  
-[👉 Hier geht's zur Live-Webseite](https://DEIN-GITHUB-NAME.github.io/Projekt1/)  
-*(Ersetze „DEIN-GITHUB-NAME“ oben noch mit deinem echten GitHub-Namen!)*
+**Live Project Link:** [https://cix77.github.io/Projekt1](https://cix77.github.io/Projekt1)
 
 ---
 
-## ✨ Features
+## How It Started & What I Learned
+This project began with my very first personal impression of New York: the city is incredibly, painfully loud—louder than any other city I have ever experienced on this planet. I wanted to find out if this was just my subjective sensory overload as a newcomer, or if the actual data backed this up. 
 
-* **Scrollytelling-Diagramm:** Ein interaktives Balkendiagramm, das beim Herunterscrollen animiert wird und die extremen Dezibel-Unterschiede von Sirenen veranschaulicht.
-* **Diskrete Audiosteuerung:** Minimalistische, halbtransparente Audio-Buttons im "Glassmorphismus"-Design (`Noise Off` / `Noise On`), die sich nahtlos über die Videos legen.
-* **Responsive Webdesign:** Optimiert für Desktop-Monitore und Smartphones (inklusive nativer Anpassung für Hochformat-/Portrait-Videos auf Textbreite).
-* **Visuelle Hotspots:** Kartenausschnitte und Heatmaps fokussieren die Lärm-Brennpunkte Manhattans (z. B. Washington Heights & Inwood).
-
----
-
-## 🛠️ Technologien & Design
-
-* **HTML5 & CSS3:** Semantischer Code mit flexiblen Layouts (`Flexbox`, `position: absolute` für Overlays).
-* **JavaScript (Vanilla):** Scroll-getriggerte Event-Listener für die Diagramm-Animationen und die Audio-Steuerung der HTML5-Videos.
-* **Typography:** [Google Fonts (Lora)](https://fonts.google.com/) für markante Überschriften und klassische Georgia für optimale Lesbarkeit im Fließtext.
+**The main learnings:** 
+* Yes, New York is objectively loud, and the official 311 complaint data confirms this feeling 100%. 
+* Through this investigation, I also got to discover and learn about **Washington Heights**—a neighborhood with an incredibly vibrant, community-driven acoustic life that contrasts sharply with the city's corporate noise.
 
 ---
 
-## 📁 Dateistruktur im Repository
+## Key Findings
+* **Acoustic Standards:** New York City relies on maximum auditory signaling impact. For example, NYC fire truck sirens are legally permitted to hit 120 decibels—significantly higher than European urban limits like Zurich, which cap similar emergency sirens around 90 decibels.
+* **The Music Factor:** According to citywide 311 data, loud music is by far the most frequent source of friction, making up roughly 45% of all registered noise complaints.
+* **The Upper Manhattan Hotspot:** While major transportation hubs are inherently loud, the absolute density hotspot for residential noise complaints is located at the northern tip of Manhattan in Washington Heights and Inwood. 
 
-Damit das Projekt korrekt geladen wird, müssen folgende Assets im Hauptverzeichnis liegen:
+---
 
-```text
-├── index.html        # Die Hauptseite (dein HTML-Code)
-├── noise_vid55.mp4   # Hintergrund-Video (Intro)
-├── noise_latino1.mp4 # Video im Hochformat (Washington Heights)
-├── noisemap.svg      # Übersichtskarte der Lärmklagen
-├── heatmap33.png     # Detail-Heatmap für Hotspots
-└── wash.webp         # Artikelbild (Wasserspiele)
+## Design & Technical Struggles (What Didn't Work)
+Being honest about the workflow, not everything went smoothly:
+* **The Illustrator Trap:** I ended up spending way too much time wrestling with Adobe Illustrator trying to clean up, scale, and prep the visual assets. I easily spent way too many hours here instead of focusing on the code early on.
+* **Failed Map Animation:** My original plan was to build a beautiful, fluidly animated map showing how complaints pop up over time. Unfortunately, after countless attempts and technical dead-ends, **the map animation just did not work out**. I had to pivot and accept static, clean SVG/PNG exports instead to keep the page functional and fast.
+
+---
+
+## Data Collection & Methodology
+
+### 1. Data Sourcing
+The primary dataset was pulled directly from the **NYC Open Data Portal** using the official 311 Service Requests API. 
+* **API Endpoint Used:** `https://data.cityofnewyork.us/resource/erm2-nwe9.csv`
+* **Filtering:** The queries were programmatically filtered to isolate `Complaint Type = 'Noise - Vehicle'` and general noise indicators to keep the dataset focused and manageable.
+
+### 2. Data Analysis & Processing
+The analysis was conducted using Python inside Jupyter Notebooks. The workflow involved:
+* Using the `requests` library to fetch CSV streams directly from the live Socrata API.
+* Utilizing `pandas` to clean missing data rows, handle empty coordinate fields (`latitude` and `longitude`), and calculate basic percentage distributions for complaint categories.
+* Utilizing basic `matplotlib` functions like `plt.scatter` to plot raw coordinates to project the physical shape of NYC, and `plt.hexbin` to group coordinate clusters into localized density bins to find geographic hotspots.
+
+---
+
+## Technical Growth & New Skills
+Despite the setbacks, this project allowed me to learn a lot of new concepts:
+* **API Integration:** Learning how to structure API parameters directly within a Python script to request pre-filtered data rather than downloading multi-gigabyte raw files.
+* **Programmatic Mapping:** Learning how to turn basic geographic coordinate data (lat/lon) into informative data visualizations using basic Python plot parameters.
+* **Audio-Visual Web Controls:** Implementing custom, non-intrusive JavaScript triggers to allow users to manually play and mute ambient background tracks on the live article page.
+
+---
+
+## Repository Structure
+* `/index.html` - The main web page styled with customized responsive layouts and scroll-animated charts.
+* `/notebooks/projek1_sirens.ipynb` - Notebook handling the API data fetching, pandas cleaning, and basic data distributions.
+* `/notebooks/02_plots_and_maps.ipynb` - Notebook containing the pure matplotlib and hexbin plotting logic used to generate the article graphics.
+* `/.gitignore` - Prevents large tracking caches or local raw CSV outputs from cluttering the repository.
